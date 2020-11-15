@@ -1,0 +1,21 @@
+#! /usr/bin/bash
+composer install
+tput setaf 1; echo 'Please specify the branch name!'
+read branch 
+# Pull the latest changes from the git repository
+git pull origin $branch
+# Refresh the database and run all database seeds...
+php artisan migrate:refresh --seed
+# Set Directory Permissions
+chmod -R o+w storage/ bootstrap/
+# Clearing caches
+php artisan cache:clear
+# Clear routes
+php artisan route:clear
+# Clear and cache config
+php artisan config:clear
+php artisan config:cache
+# Generate app key
+php artisan key:generate
+# Start server
+php artisan up
