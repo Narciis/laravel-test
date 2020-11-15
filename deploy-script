@@ -18,4 +18,4 @@ php artisan config:cache
 # Generate app key
 php artisan key:generate
 # Start server
-php artisan up
+php artisan serve
